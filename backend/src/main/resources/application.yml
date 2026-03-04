@@ -10,7 +10,7 @@ spring:
       write-dates-as-timestamps: false
 
 server:
-  port: ${SERVER_PORT:8888}
+  port: ${PORT:8888}
 
 jwt:
   secret: ${JWT_SECRET:minha-chave-secreta-super-segura-para-jwt-piedade-ccb-2024-com-pelo-menos-256-bits}
