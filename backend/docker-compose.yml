@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: piedade-mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: piedade_user
+      MONGO_INITDB_ROOT_PASSWORD: piedade_pass
+      MONGO_INITDB_DATABASE: piedade_db
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - piedade-net
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: piedade-backend
+    ports:
+      - "8888:8888"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://piedade_user:piedade_pass@mongodb:27017/piedade_db?authSource=admin
+      JWT_SECRET: uma-chave-secreta-forte-aqui-trocar-em-producao
+      JWT_EXPIRATION: 86400000
+    depends_on:
+      - mongodb
+    networks:
+      - piedade-net
+
+volumes:
+  mongo_data:
+
+networks:
+  piedade-net:
+    driver: bridge
