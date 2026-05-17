@@ -86,7 +86,7 @@ function DoacaoList() {
     {
       key: 'registradoPor',
       label: 'Registrado Por',
-      render: (row) => row.registradoPor?.nome || row.registradoPorNome || '--',
+      render: (row) => row.registradoPor?.nome || row.registradoPorNome || row.registradoPor || '--',
     },
     {
       key: 'acoes',
@@ -137,9 +137,9 @@ function DoacaoList() {
         </div>
       </div>
 
-      {(row.registradoPor?.nome || row.registradoPorNome) && (
+      {(row.registradoPor?.nome || row.registradoPorNome || row.registradoPor) && (
         <p className="text-xs text-gray-400 mt-2">
-          Por: {row.registradoPor?.nome || row.registradoPorNome}
+          Por: {row.registradoPor?.nome || row.registradoPorNome || row.registradoPor}
         </p>
       )}
 

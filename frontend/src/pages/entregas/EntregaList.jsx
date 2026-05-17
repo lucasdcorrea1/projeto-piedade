@@ -111,7 +111,7 @@ function EntregaList() {
     {
       key: 'fiel',
       label: 'Fiel',
-      render: (row) => row.fiel?.nome || row.fielNome || '--',
+      render: (row) => row.fiel?.nome || row.fielNome || row.nomeFiel || '--',
     },
     {
       key: 'itens',
@@ -139,7 +139,7 @@ function EntregaList() {
     {
       key: 'registradoPor',
       label: 'Registrado Por',
-      render: (row) => row.registradoPor?.nome || row.registradoPorNome || '--',
+      render: (row) => row.registradoPor?.nome || row.registradoPorNome || row.registradoPor || '--',
     },
     {
       key: 'acoes',
@@ -184,7 +184,7 @@ function EntregaList() {
               <p className="text-sm font-semibold text-gray-900">{formatDate(row.data)}</p>
               <div className="flex items-center gap-1 text-xs text-gray-500 mt-0.5">
                 <User size={11} />
-                <span className="truncate">{row.fiel?.nome || row.fielNome || '--'}</span>
+                <span className="truncate">{row.fiel?.nome || row.fielNome || row.nomeFiel || '--'}</span>
               </div>
             </div>
           </div>
@@ -199,8 +199,8 @@ function EntregaList() {
         <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
           <div className="text-xs text-gray-500">
             {row.itens?.length ?? row.quantidadeItens ?? 0} itens
-            {(row.registradoPor?.nome || row.registradoPorNome) && (
-              <span> &middot; {row.registradoPor?.nome || row.registradoPorNome}</span>
+            {(row.registradoPor?.nome || row.registradoPorNome || row.registradoPor) && (
+              <span> &middot; {row.registradoPor?.nome || row.registradoPorNome || row.registradoPor}</span>
             )}
           </div>
           <div className="flex items-center gap-1">
